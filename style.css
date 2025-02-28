@@ -87,3 +87,41 @@ button {
 button:hover {
     background-color: #388E3C;
 }
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .sumber-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .sumber-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .SumTitle {
+        font-size: 28px;
+    }
+    .SumDesc {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        margin: 20px;
+    }
+    .SumTitle {
+        font-size: 24px;
+    }
+    .SumDesc {
+        font-size: 12px;
+    }
+    .sumber-card {
+        padding: 15px;
+    }
+    button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
