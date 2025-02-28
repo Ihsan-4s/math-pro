@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Barisan Geometri</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 5px; padding: 10px; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Kalkulator Barisan Geometri</h2>
+    <a href="index.html"><button>Back</button></a>
+    <h3>Hitung Suku ke-n (Un)</h3>
+    <input type="number" id="a" placeholder="Suku pertama (a)">
+    <input type="number" id="r" placeholder="Rasio (r)">
+    <input type="number" id="n" placeholder="Suku ke-n (n)">
+    <button onclick="calculateUn()">Hitung Un</button>
+    <div class="result" id="outputUn"></div>
+    
+    <h3>Hitung Rasio (r)</h3>
+    <input type="number" id="un" placeholder="Suku ke-n (Un)">
+    <input type="number" id="a2" placeholder="Suku pertama (a)">
+    <input type="number" id="n2" placeholder="Suku ke-n (n)">
+    <button onclick="calculateR()">Hitung r</button>
+    <div class="result" id="outputR"></div>
+    
+    <h3>Hitung Jumlah n Suku Pertama (Sn)</h3>
+    <input type="number" id="a3" placeholder="Suku pertama (a)">
+    <input type="number" id="r2" placeholder="Rasio (r)">
+    <input type="number" id="n3" placeholder="Jumlah suku (n)">
+    <button onclick="calculateSn()">Hitung Sn</button>
+    <div class="result" id="outputSn"></div>
+
+    <script>
+        function calculateUn() {
+            let a = parseFloat(document.getElementById("a").value);
+            let r = parseFloat(document.getElementById("r").value);
+            let n = parseInt(document.getElementById("n").value);
+            
+            if (!isNaN(a) && !isNaN(r) && !isNaN(n)) {
+                let un = a * Math.pow(r, n - 1);
+                document.getElementById("outputUn").innerHTML = `Suku ke-${n}: <strong>${un}</strong>`;
+            } else {
+                document.getElementById("outputUn").innerHTML = "Masukkan nilai yang valid.";
+            }
+        }
+
+        function calculateR() {
+            let un = parseFloat(document.getElementById("un").value);
+            let a = parseFloat(document.getElementById("a2").value);
+            let n = parseInt(document.getElementById("n2").value);
+            
+            if (!isNaN(un) && !isNaN(a) && !isNaN(n)) {
+                let r = Math.pow(un / a, 1 / (n - 1));
+                document.getElementById("outputR").innerHTML = `Rasio (r): <strong>${r}</strong>`;
+            } else {
+                document.getElementById("outputR").innerHTML = "Masukkan nilai yang valid.";
+            }
+        }
+
+        function calculateSn() {
+            let a = parseFloat(document.getElementById("a3").value);
+            let r = parseFloat(document.getElementById("r2").value);
+            let n = parseInt(document.getElementById("n3").value);
+            
+            if (!isNaN(a) && !isNaN(r) && !isNaN(n)) {
+                let sn;
+                if (r === 1) {
+                    sn = a * n;
+                } else {
+                    sn = a * (1 - Math.pow(r, n)) / (1 - r);
+                }
+                document.getElementById("outputSn").innerHTML = `Jumlah ${n} suku pertama (Sn): <strong>${sn}</strong>`;
+            } else {
+                document.getElementById("outputSn").innerHTML = "Masukkan nilai yang valid.";
+            }
+        }
+    </script>
+</body>
+</html>

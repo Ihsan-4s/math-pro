@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Barisan Aritmatika</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { margin: 5px; padding: 10px; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Kalkulator Barisan Aritmatika</h2>
+    <a href="index.html"><button>Back</button></a>
+    <h3>Hitung Suku ke-n dan Jumlah n Suku Pertama</h3>
+    <input type="number" id="a" placeholder="Suku pertama (a)">
+    <input type="number" id="d" placeholder="Beda (d)">
+    <input type="number" id="n" placeholder="Jumlah suku (n)">
+    <button onclick="calculate()">Hitung</button>
+    <div class="result" id="output"></div>
+    
+    <h3>Hitung Suku ke-n (Un) atau Jumlah n Suku Pertama (Sn)</h3>
+    <input type="number" id="a2" placeholder="Suku pertama (a)">
+    <input type="number" id="d2" placeholder="Beda (d)">
+    <input type="number" id="n2" placeholder="Suku ke-n (n)">
+    <button onclick="calculateUnSn()">Hitung Un & Sn</button>
+    <div class="result" id="outputUnSn"></div>
+    
+    <h3>Hitung Suku Pertama (a)</h3>
+    <input type="number" id="nthTerm" placeholder="Suku ke-n">
+    <input type="number" id="d3" placeholder="Beda (d)">
+    <input type="number" id="n3" placeholder="Jumlah suku (n)">
+    <button onclick="calculateA()">Hitung a</button>
+    <div class="result" id="outputA"></div>
+    
+    <h3>Hitung Jumlah n Suku Pertama (Sn) Jika Un Diketahui</h3>
+    <input type="number" id="un" placeholder="Suku ke-n (Un)">
+    <input type="number" id="a3" placeholder="Suku pertama (a)">
+    <input type="number" id="n4" placeholder="Jumlah suku (n)">
+    <button onclick="calculateSnFromUn()">Hitung Sn</button>
+    <div class="result" id="outputSnFromUn"></div>
+
+    <script>
+        function calculate() {
+            let a = parseFloat(document.getElementById("a").value);
+            let d = parseFloat(document.getElementById("d").value) || 0;
+            let n = parseInt(document.getElementById("n").value) || 1;
+            
+            if (!isNaN(a)) {
+                let nthTerm = a + (n - 1) * d;
+                let sum = (n / 2) * (2 * a + (n - 1) * d);
+                document.getElementById("output").innerHTML = 
+                    `Suku ke-${n}: <strong>${nthTerm}</strong><br>
+                     Jumlah ${n} suku pertama: <strong>${sum}</strong>`;
+            } else {
+                document.getElementById("output").innerHTML = "Masukkan nilai yang valid.";
+            }
+        }
+
+        function calculateUnSn() {
+            let a = parseFloat(document.getElementById("a2").value);
+            let d = parseFloat(document.getElementById("d2").value) || 0;
+            let n = parseInt(document.getElementById("n2").value) || 1;
+            
+            if (!isNaN(a)) {
+                let nthTerm = a + (n - 1) * d;
+                let sum = (n / 2) * (2 * a + (n - 1) * d);
+                document.getElementById("outputUnSn").innerHTML = 
+                    `Suku ke-${n}: <strong>${nthTerm}</strong><br>
+                     Jumlah ${n} suku pertama: <strong>${sum}</strong>`;
+            } else {
+                document.getElementById("outputUnSn").innerHTML = "Masukkan nilai yang valid.";
+            }
+        }
+
+        function calculateA() {
+            let nthTerm = parseFloat(document.getElementById("nthTerm").value);
+            let d = parseFloat(document.getElementById("d3").value) || 0;
+            let n = parseInt(document.getElementById("n3").value) || 1;
+            
+            if (!isNaN(nthTerm)) {
+                let a = nthTerm - (n - 1) * d;
+                document.getElementById("outputA").innerHTML = `Suku pertama (a): <strong>${a}</strong>`;
+            } else {
+                document.getElementById("outputA").innerHTML = "Masukkan nilai yang valid.";
+            }
+        }
+
+        function calculateSnFromUn() {
+            let un = parseFloat(document.getElementById("un").value);
+            let a = parseFloat(document.getElementById("a3").value);
+            let n = parseInt(document.getElementById("n4").value);
+            
+            if (!isNaN(un) && !isNaN(a) && !isNaN(n)) {
+                let sum = (n / 2) * (a + un);
+                document.getElementById("outputSnFromUn").innerHTML = `Jumlah ${n} suku pertama (Sn): <strong>${sum}</strong>`;
+            } else {
+                document.getElementById("outputSnFromUn").innerHTML = "Masukkan nilai yang valid.";
+            }
+        }
+    </script>
+</body>
+</html>
